@@ -1,0 +1,4 @@
+{
+  "/api/timetable/route": "app/api/timetable/route.js",
+  "/page": "app/page.js"
+}
