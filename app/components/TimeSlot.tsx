@@ -7,21 +7,21 @@ interface TimeSlotProps {
 
 export const TimeSlot: React.FC<TimeSlotProps> = ({ timeSlot }) => {
   const periodClass = timeSlot.period ? timeSlot.period : '';
-  
+
   return (
-    <div className={`time-slot ${periodClass}`}>
+    <article className={`time-slot ${periodClass}`} aria-label={`${timeSlot.courseCode} ${timeSlot.courseName}`}>
       <div className="time-info">
-        <span className="time">{timeSlot.time}</span>
-        <span className="venue">{timeSlot.venue}</span>
+        <time className="time" dateTime={timeSlot.time}>{timeSlot.time}</time>
+        <span className="venue" aria-label="Venue">{timeSlot.venue}</span>
       </div>
       <div className="course-details">
-        <div className="course-code">{timeSlot.courseCode}</div>
-        <div className="course-name">{timeSlot.courseName}</div>
+        <div className="course-code" aria-label="Course code">{timeSlot.courseCode}</div>
+        <h3 className="course-name">{timeSlot.courseName}</h3>
         <div className="group-lecturer">
-          <span className="group">{timeSlot.group}</span>
-          <span className="lecturer">{timeSlot.lecturer}</span>
+          <span className="group" aria-label="Group">{timeSlot.group}</span>
+          <span className="lecturer" aria-label="Lecturer">{timeSlot.lecturer}</span>
         </div>
       </div>
-    </div>
+    </article>
   );
 };

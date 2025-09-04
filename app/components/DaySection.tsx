@@ -8,14 +8,20 @@ interface DaySectionProps {
 }
 
 export const DaySection: React.FC<DaySectionProps> = ({ day, timeSlots }) => {
+  const headingId = `${day}-heading`;
+
   return (
-    <div className="day-section">
-      <h2 className="day-header">{day.toUpperCase()}</h2>
-      <div className="time-slots">
+    <section className="day-section" aria-labelledby={headingId} id={day}>
+      <h2 className="day-header" id={headingId}>
+        {day.toUpperCase()}
+      </h2>
+      <ul className="time-slots" role="list">
         {timeSlots.map((slot, index) => (
-          <TimeSlot key={index} timeSlot={slot} />
+          <li key={`${day}-${index}`}>
+            <TimeSlot timeSlot={slot} />
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
   );
 };

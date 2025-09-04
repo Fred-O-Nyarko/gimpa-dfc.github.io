@@ -9,15 +9,15 @@ interface TimetableProps {
 
 export const Timetable: React.FC<TimetableProps> = ({ data }) => {
   return (
-    <div className="timetable-container">
+    <div className="timetable-container" role="application">
       <Header university={data.university} />
 
-      <main className="timetable-main">
+      <main className="timetable-main" role="main">
         <DaySection day="friday" timeSlots={data.schedule.friday} />
         <DaySection day="saturday" timeSlots={data.schedule.saturday} />
       </main>
 
-      <footer className="timetable-footer">
+      <footer className="timetable-footer" role="contentinfo">
         <p>Generated for Academic Year 2025/2026</p>
       </footer>
     </div>

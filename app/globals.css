@@ -91,6 +91,11 @@ body {
   margin-bottom: 3rem;
 }
 
+/* Improve in-page navigation comfort when jumping to a day */
+.day-section {
+  scroll-margin-top: 72px;
+}
+
 .day-header {
   font-size: 1.5rem;
   font-weight: 700;
@@ -219,7 +224,7 @@ body {
 
 .timetable-footer {
   background: #f1f5f9;
-  padding: 1.5rem 2rem;
+  padding: 1.25rem 2rem;
   text-align: center;
   color: #64748b;
   font-size: 0.9rem;
@@ -509,7 +514,7 @@ body {
   }
 
   .timetable-main {
-    padding: 1rem;
+    padding: 0.75rem 1rem;
   }
 
   .admin-overlay {
@@ -551,6 +556,49 @@ body {
 
   .slot-editor {
     flex-direction: column;
+  }
+
+  /* Mobile card padding */
+  .time-slot {
+    padding: 1.25rem;
+  }
+
+  /* Sticky day headers for easier scanning on mobile */
+  .day-header {
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    z-index: 5;
+    display: block;
+    padding: 0.75rem 0;
+    margin-bottom: 0.75rem;
+    border-bottom-width: 2px;
+    box-shadow: 0 2px 0 rgba(226, 232, 240, 0.6);
+  }
+
+  /* Larger tap targets on mobile */
+  .venue,
+  .group {
+    padding: 0.35rem 0.85rem;
+  }
+}
+
+/* Fine-tuned small-phone adjustments */
+@media (max-width: 420px) {
+  .header-content h1 {
+    font-size: 1.2rem;
+  }
+
+  .course-name {
+    font-size: 1rem;
+  }
+
+  .time {
+    font-size: 1rem;
+  }
+
+  .time-slot {
+    border-radius: 10px;
   }
 }
 
