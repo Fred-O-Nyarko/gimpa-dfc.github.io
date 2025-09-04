@@ -67,7 +67,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ timetableData, onUpdate 
     } catch (error) {
       console.error('Logout error:', error);
     }
-    
+
     setIsAuthenticated(false);
     setPassword('');
     setLoginError('');
@@ -83,7 +83,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ timetableData, onUpdate 
       lecturer: '',
       period: day === 'saturday' ? 'morning' : undefined
     };
-    
+
     setEditData(prev => ({
       ...prev,
       schedule: {
@@ -108,7 +108,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ timetableData, onUpdate 
       ...prev,
       schedule: {
         ...prev.schedule,
-        [day]: prev.schedule[day].map((slot, i) => 
+        [day]: prev.schedule[day].map((slot, i) =>
           i === index ? { ...slot, [field]: value } : slot
         )
       }
@@ -149,24 +149,28 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ timetableData, onUpdate 
           </div>
           <form onSubmit={handleLogin} className="login-form">
             {loginError && (
-              <div className="error-message" style={{ 
-                color: '#dc3545', 
-                marginBottom: '10px', 
+              <div className="error-message" style={{
+                color: '#dc3545',
+                marginBottom: '10px',
                 fontSize: '14px',
-                textAlign: 'center' 
+                textAlign: 'center'
               }}>
                 {loginError}
               </div>
             )}
-            <input
-              type="password"
-              placeholder="Enter admin password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="password-input"
-              autoFocus
-              disabled={isLoading}
-            />
+            <div className="form-field">
+              <label htmlFor="admin-password">Admin Password</label>
+              <input
+                id="admin-password"
+                type="password"
+                placeholder="Enter admin password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="password-input"
+                autoFocus
+                disabled={isLoading}
+              />
+            </div>
             <button type="submit" className="login-btn" disabled={isLoading}>
               {isLoading ? 'Authenticating...' : 'Login'}
             </button>
@@ -191,7 +195,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ timetableData, onUpdate 
             </button>
           </div>
         </div>
-        
+
         <div className="admin-content">
           {/* <div className="university-section">
             <h4>University Information</h4>
@@ -239,48 +243,72 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ timetableData, onUpdate 
               {editData.schedule.friday.map((slot, index) => (
                 <div key={index} className="slot-editor">
                   <div className="slot-form">
-                    <input
-                      type="text"
-                      placeholder="Time"
-                      value={slot.time}
-                      onChange={(e) => updateTimeSlot('friday', index, 'time', e.target.value)}
-                      className="form-input"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Venue"
-                      value={slot.venue}
-                      onChange={(e) => updateTimeSlot('friday', index, 'venue', e.target.value)}
-                      className="form-input"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Course Code"
-                      value={slot.courseCode}
-                      onChange={(e) => updateTimeSlot('friday', index, 'courseCode', e.target.value)}
-                      className="form-input"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Course Name"
-                      value={slot.courseName}
-                      onChange={(e) => updateTimeSlot('friday', index, 'courseName', e.target.value)}
-                      className="form-input"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Group"
-                      value={slot.group}
-                      onChange={(e) => updateTimeSlot('friday', index, 'group', e.target.value)}
-                      className="form-input"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Lecturer"
-                      value={slot.lecturer}
-                      onChange={(e) => updateTimeSlot('friday', index, 'lecturer', e.target.value)}
-                      className="form-input"
-                    />
+                    <div className="form-field">
+                      <label htmlFor={`friday-${index}-time`}>Time</label>
+                      <input
+                        id={`friday-${index}-time`}
+                        type="text"
+                        placeholder="Time"
+                        value={slot.time}
+                        onChange={(e) => updateTimeSlot('friday', index, 'time', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor={`friday-${index}-venue`}>Venue</label>
+                      <input
+                        id={`friday-${index}-venue`}
+                        type="text"
+                        placeholder="Venue"
+                        value={slot.venue}
+                        onChange={(e) => updateTimeSlot('friday', index, 'venue', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor={`friday-${index}-courseCode`}>Course Code</label>
+                      <input
+                        id={`friday-${index}-courseCode`}
+                        type="text"
+                        placeholder="Course Code"
+                        value={slot.courseCode}
+                        onChange={(e) => updateTimeSlot('friday', index, 'courseCode', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor={`friday-${index}-courseName`}>Course Name</label>
+                      <input
+                        id={`friday-${index}-courseName`}
+                        type="text"
+                        placeholder="Course Name"
+                        value={slot.courseName}
+                        onChange={(e) => updateTimeSlot('friday', index, 'courseName', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor={`friday-${index}-group`}>Group</label>
+                      <input
+                        id={`friday-${index}-group`}
+                        type="text"
+                        placeholder="Group"
+                        value={slot.group}
+                        onChange={(e) => updateTimeSlot('friday', index, 'group', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor={`friday-${index}-lecturer`}>Lecturer</label>
+                      <input
+                        id={`friday-${index}-lecturer`}
+                        type="text"
+                        placeholder="Lecturer"
+                        value={slot.lecturer}
+                        onChange={(e) => updateTimeSlot('friday', index, 'lecturer', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
                   </div>
                   <button
                     onClick={() => removeTimeSlot('friday', index)}
@@ -303,58 +331,86 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ timetableData, onUpdate 
               {editData.schedule.saturday.map((slot, index) => (
                 <div key={index} className="slot-editor">
                   <div className="slot-form">
-                    <input
-                      type="text"
-                      placeholder="Time"
-                      value={slot.time}
-                      onChange={(e) => updateTimeSlot('saturday', index, 'time', e.target.value)}
-                      className="form-input"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Venue"
-                      value={slot.venue}
-                      onChange={(e) => updateTimeSlot('saturday', index, 'venue', e.target.value)}
-                      className="form-input"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Course Code"
-                      value={slot.courseCode}
-                      onChange={(e) => updateTimeSlot('saturday', index, 'courseCode', e.target.value)}
-                      className="form-input"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Course Name"
-                      value={slot.courseName}
-                      onChange={(e) => updateTimeSlot('saturday', index, 'courseName', e.target.value)}
-                      className="form-input"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Group"
-                      value={slot.group}
-                      onChange={(e) => updateTimeSlot('saturday', index, 'group', e.target.value)}
-                      className="form-input"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Lecturer"
-                      value={slot.lecturer}
-                      onChange={(e) => updateTimeSlot('saturday', index, 'lecturer', e.target.value)}
-                      className="form-input"
-                    />
-                    <select
-                      value={slot.period || ''}
-                      onChange={(e) => updateTimeSlot('saturday', index, 'period', e.target.value)}
-                      className="form-input"
-                    >
-                      <option value="">Select Period</option>
-                      <option value="morning">Morning</option>
-                      <option value="afternoon">Afternoon</option>
-                      <option value="evening">Evening</option>
-                    </select>
+                    <div className="form-field">
+                      <label htmlFor={`saturday-${index}-time`}>Time</label>
+                      <input
+                        id={`saturday-${index}-time`}
+                        type="text"
+                        placeholder="Time"
+                        value={slot.time}
+                        onChange={(e) => updateTimeSlot('saturday', index, 'time', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor={`saturday-${index}-venue`}>Venue</label>
+                      <input
+                        id={`saturday-${index}-venue`}
+                        type="text"
+                        placeholder="Venue"
+                        value={slot.venue}
+                        onChange={(e) => updateTimeSlot('saturday', index, 'venue', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor={`saturday-${index}-courseCode`}>Course Code</label>
+                      <input
+                        id={`saturday-${index}-courseCode`}
+                        type="text"
+                        placeholder="Course Code"
+                        value={slot.courseCode}
+                        onChange={(e) => updateTimeSlot('saturday', index, 'courseCode', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor={`saturday-${index}-courseName`}>Course Name</label>
+                      <input
+                        id={`saturday-${index}-courseName`}
+                        type="text"
+                        placeholder="Course Name"
+                        value={slot.courseName}
+                        onChange={(e) => updateTimeSlot('saturday', index, 'courseName', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor={`saturday-${index}-group`}>Group</label>
+                      <input
+                        id={`saturday-${index}-group`}
+                        type="text"
+                        placeholder="Group"
+                        value={slot.group}
+                        onChange={(e) => updateTimeSlot('saturday', index, 'group', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor={`saturday-${index}-lecturer`}>Lecturer</label>
+                      <input
+                        id={`saturday-${index}-lecturer`}
+                        type="text"
+                        placeholder="Lecturer"
+                        value={slot.lecturer}
+                        onChange={(e) => updateTimeSlot('saturday', index, 'lecturer', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor={`saturday-${index}-period`}>Period</label>
+                      <select
+                        id={`saturday-${index}-period`}
+                        value={slot.period || ''}
+                        onChange={(e) => updateTimeSlot('saturday', index, 'period', e.target.value)}
+                        className="form-input"
+                      >
+                        <option value="">Select Period</option>
+                        <option value="morning">Morning</option>
+                        <option value="afternoon">Afternoon</option>
+                        <option value="evening">Evening</option>
+                      </select>
+                    </div>
                   </div>
                   <button
                     onClick={() => removeTimeSlot('saturday', index)}

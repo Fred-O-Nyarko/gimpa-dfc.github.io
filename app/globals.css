@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Existing styles below */
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +10,8 @@
 }
 
 body {
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, sans-serif;
   background: #f8fafc;
   color: #1e293b;
   line-height: 1.6;
@@ -401,6 +407,17 @@ body {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-field label {
+  font-size: 0.85rem;
+  color: #475569;
+}
+
 .schedule-section {
   display: grid;
   gap: 2rem;
@@ -497,8 +514,37 @@ body {
     padding: 1rem;
   }
 
+  .admin-overlay {
+    align-items: stretch;
+    padding: 12px;
+  }
+
+  .admin-modal {
+    width: 100%;
+    height: 90vh;
+    max-height: 90vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
   .admin-modal.large {
-    max-width: 95vw;
+    max-width: 100%;
+  }
+
+  .admin-header {
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    z-index: 10;
+    padding: 1rem;
+  }
+
+  .admin-content {
+    padding: 1rem;
+    max-height: unset;
+    flex: 1;
+    overflow-y: auto;
   }
 
   .slot-form {
