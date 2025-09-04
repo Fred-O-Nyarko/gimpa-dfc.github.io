@@ -12,25 +12,65 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ timetableData, onUpdate 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   const [editData, setEditData] = useState<TimetableData>(timetableData);
+  const [loginError, setLoginError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const ADMIN_PASSWORD = 'gimpa2024';
-
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
-      setEditData(timetableData);
-    } else {
-      alert('Incorrect password');
+    setIsLoading(true);
+    setLoginError('');
+
+    try {
+      const response = await fetch('/api/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+        credentials: 'include', // Include cookies for session management
+      });
+
+      if (response.ok) {
+        setIsAuthenticated(true);
+        setEditData(timetableData);
+        setPassword(''); // Clear password from memory
+      } else {
+        const errorData = await response.json();
+        setLoginError(errorData.error || 'Login failed');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setLoginError('Connection error. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const handleSave = () => {
-    onUpdate(editData);
-    setIsOpen(false);
+  const handleSave = async () => {
+    try {
+      await onUpdate(editData);
+      setIsOpen(false);
+      await handleLogout();
+      alert('Timetable updated successfully!');
+    } catch (error) {
+      console.error('Save error:', error);
+      alert('Failed to save changes. Please try again.');
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth', {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+    
     setIsAuthenticated(false);
     setPassword('');
-    alert('Timetable updated successfully!');
+    setLoginError('');
   };
 
   const addTimeSlot = (day: 'friday' | 'saturday') => {
@@ -108,6 +148,16 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ timetableData, onUpdate 
             </button>
           </div>
           <form onSubmit={handleLogin} className="login-form">
+            {loginError && (
+              <div className="error-message" style={{ 
+                color: '#dc3545', 
+                marginBottom: '10px', 
+                fontSize: '14px',
+                textAlign: 'center' 
+              }}>
+                {loginError}
+              </div>
+            )}
             <input
               type="password"
               placeholder="Enter admin password"
@@ -115,8 +165,11 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ timetableData, onUpdate 
               onChange={(e) => setPassword(e.target.value)}
               className="password-input"
               autoFocus
+              disabled={isLoading}
             />
-            <button type="submit" className="login-btn">Login</button>
+            <button type="submit" className="login-btn" disabled={isLoading}>
+              {isLoading ? 'Authenticating...' : 'Login'}
+            </button>
           </form>
         </div>
       </div>

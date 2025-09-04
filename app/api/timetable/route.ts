@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { verifySession } from '../../lib/auth';
 
 const dataFilePath = path.join(process.cwd(), 'data', 'timetable.json');
 
@@ -17,6 +18,11 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
+    // Verify authentication for updates
+    if (!verifySession(request)) {
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
+    }
+
     const updatedData = await request.json();
     fs.writeFileSync(dataFilePath, JSON.stringify(updatedData, null, 2));
     return NextResponse.json({ message: 'Timetable updated successfully' });

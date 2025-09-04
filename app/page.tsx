@@ -29,15 +29,21 @@ export default function Home() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(newData),
+        credentials: 'include', // Include session cookies
       });
       
       if (response.ok) {
         setTimetableData(newData);
+      } else if (response.status === 401) {
+        alert('Session expired. Please login again.');
+        throw new Error('Authentication required');
       } else {
-        console.error('Failed to update timetable');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to update timetable');
       }
     } catch (error) {
       console.error('Error updating timetable:', error);
+      throw error; // Re-throw so AdminPanel can handle it
     }
   };
 
