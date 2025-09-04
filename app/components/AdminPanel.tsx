@@ -193,7 +193,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ timetableData, onUpdate 
         </div>
         
         <div className="admin-content">
-          <div className="university-section">
+          {/* <div className="university-section">
             <h4>University Information</h4>
             <div className="form-grid">
               <input
@@ -225,7 +225,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ timetableData, onUpdate 
                 className="form-input"
               />
             </div>
-          </div>
+          </div> */}
 
           <div className="schedule-section">
             <div className="day-admin">

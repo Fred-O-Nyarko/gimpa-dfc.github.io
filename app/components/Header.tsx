@@ -10,7 +10,7 @@ export const Header: React.FC<HeaderProps> = ({ university }) => {
     <header className="header">
       <div className="university-logo">
         <img 
-          src="https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" 
+          src="/download.jpeg" 
           alt="GIMPA Logo" 
           className="logo-image"
         />
