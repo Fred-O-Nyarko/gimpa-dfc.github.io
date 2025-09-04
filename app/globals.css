@@ -37,22 +37,22 @@ body {
 }
 
 .logo-image {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   border-radius: 12px;
   object-fit: cover;
   border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .header-content h1 {
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   line-height: 1.2;
 }
 
 .header-content h2 {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.25rem;
   opacity: 0.9;
@@ -71,7 +71,8 @@ body {
   font-size: 0.9rem;
 }
 
-.level, .semester {
+.level,
+.semester {
   background: rgba(255, 255, 255, 0.2);
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
@@ -476,22 +477,22 @@ body {
     text-align: center;
     gap: 1rem;
   }
-  
+
   .header-content h1 {
     font-size: 1.4rem;
   }
-  
+
   .time-slot {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .group-lecturer {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
-  
+
   .timetable-main {
     padding: 1rem;
   }
@@ -513,11 +514,11 @@ body {
   body {
     background: white;
   }
-  
+
   .timetable-container {
     box-shadow: none;
   }
-  
+
   .time-slot:hover {
     transform: none;
     box-shadow: none;
