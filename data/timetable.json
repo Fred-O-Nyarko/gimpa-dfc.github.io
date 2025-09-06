@@ -18,7 +18,7 @@
       },
       {
         "time": "5:30pm - 8:30pm",
-        "venue": "L5 SF3",
+        "venue": "L2 SF1",
         "courseCode": "SOT721B",
         "courseName": "Cybercrime and Risk Management",
         "group": "DFC Group B",
@@ -29,19 +29,19 @@
       {
         "time": "8:30am - 11:30am",
         "venue": "L2 SF3",
-        "courseCode": "SOT722B",
-        "courseName": "Digital Forensics",
-        "group": "DFC Group B",
-        "lecturer": "Prof. Winfred Yaokumah",
-        "period": "morning"
-      },
-      {
-        "time": "8:30am - 11:30am",
-        "venue": "L2 SF3",
         "courseCode": "SOT723B",
         "courseName": "Advanced Data Communication and Computer Networks",
         "group": "DFC Group A",
         "lecturer": "Dr. Eric Kuada",
+        "period": "morning"
+      },
+      {
+        "time": "8:30am - 11:30am",
+        "venue": "L2 SF1",
+        "courseCode": "SOT722B",
+        "courseName": "Digital Forensics",
+        "group": "DFC Group B",
+        "lecturer": "Prof. Winfred Yaokumah",
         "period": "morning"
       },
       {
@@ -55,7 +55,7 @@
       },
       {
         "time": "12:30pm - 3:30pm",
-        "venue": "L2 SF3",
+        "venue": "L2 SF1",
         "courseCode": "SOT701B",
         "courseName": "Organisational Study in IS",
         "group": "DFC Group B",
@@ -64,7 +64,7 @@
       },
       {
         "time": "4:30pm - 7:30pm",
-        "venue": "L2 SF3",
+        "venue": "L2 SF1",
         "courseCode": "SOT723B",
         "courseName": "Advanced Data Communication and Computer Networks",
         "group": "DFC Group B",
